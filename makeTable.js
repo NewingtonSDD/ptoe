@@ -5,6 +5,7 @@
  * Time: 6:18 PM
  * To change this template use File | Settings | File Templates.
  */
+
 ptoe  = [
     { atomicNo: 1, sym: 'H', name: "Hydrogen", family: "hydrogen" },
     { atomicNo: 2, sym: 'He', name: "Helium", family: "noble" },
@@ -35,7 +36,7 @@ ptoe  = [
     { atomicNo: 27, sym: 'Co', name: "", family: "transition" },
     { atomicNo: 28, sym: 'Ni', name: "Nickel", family: "transition" },
     { atomicNo: 29, sym: 'Cu', name: "Copper", family: "transition" },
-    { atomicNo: 30, sym: 'Zn', name: "Zinc", family: "poor" },
+    { atomicNo: 30, sym: 'Zn', name: "Zinc", family: "transition" },
     { atomicNo: 31, sym: 'Ga', name: "", family: "poor" },
     { atomicNo: 32, sym: 'Ge', name: "", family: "poor" },
     { atomicNo: 33, sym: 'As', name: "", family: "other" },
@@ -49,23 +50,42 @@ ptoe  = [
 
 ];
 
+function hoverElem(elemId) {
 
+    var htmlBuffer = "";
+
+    htmlBuffer +=
+                ptoe[elemId].atomicNo +
+        "<br/><h1>" +
+        ptoe[elemId].sym +
+        "</h1><br/><h2>" +
+        ptoe[elemId].name +
+        "</h2>";
+
+    document.getElementById("higlightElem").className = ptoe[elemId].family;
+
+    setByID("higlightElem", htmlBuffer);
+}
 
 function drawPTOE() {
 
     var htmlBuffer = "";
 
     function showElem(atomicNumber) {
-        htmlBuffer += "<td class=" + ptoe[atomicNumber].family + ">" +
+        htmlBuffer += "<td class=" +
+                        ptoe[atomicNumber].family +
+                        " onmouseover=hoverElem(" + atomicNumber + ")" +
+                        ">" +
                         ptoe[atomicNumber].atomicNo +
                         "<br/><h2>" +
                         ptoe[atomicNumber].sym +
                         "</h2><br/>" +
-                        ptoe[atomicNumber].name +
+//                        ptoe[atomicNumber].name +
             "</td>";
     }
 
     var p = 0;
+    var i, j,k;
 
     htmlBuffer = "<table><tr>";
 

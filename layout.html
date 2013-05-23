@@ -6,8 +6,10 @@
     <style>
         td { height: 50px; width: 5.5%; border: 0;}
         td.invis { border: 0 }
-        table { border: 1px orange solid}
+        table { border: 0; width: 100%}
         body { font-family: Helvetica }
+
+        #higlight { position: fixed; top: 10%; left: 13.5%; height: 100px; width: 100px; border: 0 }
 
         .hydrogen { background-color: grey }
         .noble { background-color: aqua }
@@ -23,5 +25,7 @@
 </head>
 <body onload="drawPTOE()">
     <div id="ptoe"></div>
+
+    <table id="higlight"><tr><td id="higlightElem"></td></tr></table>
 </body>
 </html>
