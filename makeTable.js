@@ -53,12 +53,36 @@ var htmlBuffer = "";
 
 function drawPTOE() {
 
-    var i = 0;
+    var p = 0;
 
     htmlBuffer = "<table><tr>";
 
-    for(;i<2; i++) {
-        htmlBuffer += "<td>" + ptoe[i].sym + "</td>";
+    for(i=0 ;i<2; i++) {
+        htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+
+        if(i==0) for(k=0; k<16; k++) htmlBuffer += "<td class='invis'></td>";
+    }
+
+    for(j=0; j<2; j++) {
+
+        htmlBuffer += "</tr><tr>";
+
+        for(i=0;i<8; i++) {
+            htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+
+            if(i==1) for(k=0; k<10; k++) htmlBuffer += "<td class='invis'></td>";
+        }
+
+    }
+
+    for(j=0; j<1; j++) {
+
+        htmlBuffer += "</tr><tr>";
+
+        for(i=0;i<18; i++) {
+            htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+        }
+
     }
 
     htmlBuffer += "</tr><table>";
@@ -67,16 +91,6 @@ function drawPTOE() {
 
 }
 
-
-
-function getByID(id) {
-    return document.getElementById(id);
-}
-
 function setByID(id, content) {
     document.getElementById(id).innerHTML = content;
-}
-
-function addByID(id, content) {
-    document.getElementById(id).innerHTML += content;
 }
