@@ -6,59 +6,72 @@
  * To change this template use File | Settings | File Templates.
  */
 ptoe  = [
-    { atomicNo: 1, sym: 'H'},
-    { atomicNo: 2, sym: 'He'},
-    { atomicNo: 3, sym: 'Li'},
-    { atomicNo: 4, sym: 'Be'},
-    { atomicNo: 5, sym: 'B'},
-    { atomicNo: 6, sym: 'C'},
-    { atomicNo: 7, sym: 'N'},
-    { atomicNo: 8, sym: 'O'},
-    { atomicNo: 9, sym: 'F'},
-    { atomicNo: 10, sym: 'Ne'},
-    { atomicNo: 11, sym: 'Na'},
-    { atomicNo: 12, sym: 'Mg'},
-    { atomicNo: 13, sym: 'Al'},
-    { atomicNo: 14, sym: 'P'},
-    { atomicNo: 15, sym: 'P'},
-    { atomicNo: 16, sym: 'S'},
-    { atomicNo: 17, sym: 'Cl'},
-    { atomicNo: 18, sym: 'Ar'},
-    { atomicNo: 19, sym: 'K'},
-    { atomicNo: 20, sym: 'Ca'},
-    { atomicNo: 21, sym: 'Sc'},
-    { atomicNo: 22, sym: 'Ti'},
-    { atomicNo: 23, sym: 'V'},
-    { atomicNo: 24, sym: 'Cr'},
-    { atomicNo: 25, sym: 'Mn'},
-    { atomicNo: 26, sym: 'Fe'},
-    { atomicNo: 27, sym: 'Co'},
-    { atomicNo: 28, sym: 'Ni'},
-    { atomicNo: 29, sym: 'Cu'},
-    { atomicNo: 30, sym: 'Zn'},
-    { atomicNo: 31, sym: 'Ga'},
-    { atomicNo: 32, sym: 'Ge'},
-    { atomicNo: 33, sym: 'As'},
-    { atomicNo: 34, sym: 'Se'},
-    { atomicNo: 35, sym: 'Br'},
-    { atomicNo: 36, sym: 'Kr'},
-    { atomicNo: 37, sym: 'Co'},
-    { atomicNo: 38, sym: 'Ni'},
-    { atomicNo: 39, sym: 'Cu'},
-    { atomicNo: 40, sym: 'Zn'}
+    { atomicNo: 1, sym: 'H', name: "Hydrogen" },
+    { atomicNo: 2, sym: 'He', name: "Helium" },
+    { atomicNo: 3, sym: 'Li', name: "Lithium" },
+    { atomicNo: 4, sym: 'Be', name: "" },
+    { atomicNo: 5, sym: 'B', name: "Boron" },
+    { atomicNo: 6, sym: 'C', name: "Carbon" },
+    { atomicNo: 7, sym: 'N', name: "Nitroge" },
+    { atomicNo: 8, sym: 'O', name: "Oxygen" },
+    { atomicNo: 9, sym: 'F', name: "" },
+    { atomicNo: 10, sym: 'Ne', name: "" },
+    { atomicNo: 11, sym: 'Na', name: "" },
+    { atomicNo: 12, sym: 'Mg', name: "Magnesium" },
+    { atomicNo: 13, sym: 'Al', name: "Aluminium" },
+    { atomicNo: 14, sym: 'Si', name: "" },
+    { atomicNo: 15, sym: 'P', name: "" },
+    { atomicNo: 16, sym: 'S', name: "" },
+    { atomicNo: 17, sym: 'Cl', name: "" },
+    { atomicNo: 18, sym: 'Ar', name: "Argon" },
+    { atomicNo: 19, sym: 'K', name: "" },
+    { atomicNo: 20, sym: 'Ca', name: "" },
+    { atomicNo: 21, sym: 'Sc', name: "" },
+    { atomicNo: 22, sym: 'Ti', name: "Titanium" },
+    { atomicNo: 23, sym: 'V', name: "" },
+    { atomicNo: 24, sym: 'Cr', name: "" },
+    { atomicNo: 25, sym: 'Mn', name: "" },
+    { atomicNo: 26, sym: 'Fe', name: "" },
+    { atomicNo: 27, sym: 'Co', name: "" },
+    { atomicNo: 28, sym: 'Ni', name: "Nickel" },
+    { atomicNo: 29, sym: 'Cu', name: "Copper" },
+    { atomicNo: 30, sym: 'Zn', name: "Zinc" },
+    { atomicNo: 31, sym: 'Ga', name: "" },
+    { atomicNo: 32, sym: 'Ge', name: "" },
+    { atomicNo: 33, sym: 'As', name: "" },
+    { atomicNo: 34, sym: 'Se', name: "" },
+    { atomicNo: 35, sym: 'Br', name: "" },
+    { atomicNo: 36, sym: 'Kr', name: "" },
+    { atomicNo: 37, sym: 'Co', name: "" },
+    { atomicNo: 38, sym: 'Ni', name: "" },
+    { atomicNo: 39, sym: 'Cu', name: "" },
+    { atomicNo: 40, sym: 'Zn', name: "" }
 
 ];
 
-var htmlBuffer = "";
+
 
 function drawPTOE() {
+
+    var htmlBuffer = "";
+
+    function showElem(atomicNumber) {
+        htmlBuffer += "<td>" +
+                        ptoe[atomicNumber].atomicNo +
+                        "<br/><h2>" +
+                        ptoe[atomicNumber].sym +
+                        "</h2><br/>" +
+                        ptoe[atomicNumber].name +
+            "</td>";
+    }
 
     var p = 0;
 
     htmlBuffer = "<table><tr>";
 
     for(i=0 ;i<2; i++) {
-        htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+
+        showElem(p++);
 
         if(i==0) for(k=0; k<16; k++) htmlBuffer += "<td class='invis'></td>";
     }
@@ -68,7 +81,8 @@ function drawPTOE() {
         htmlBuffer += "</tr><tr>";
 
         for(i=0;i<8; i++) {
-            htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+
+            showElem(p++);
 
             if(i==1) for(k=0; k<10; k++) htmlBuffer += "<td class='invis'></td>";
         }
@@ -80,7 +94,7 @@ function drawPTOE() {
         htmlBuffer += "</tr><tr>";
 
         for(i=0;i<18; i++) {
-            htmlBuffer += "<td>" + ptoe[p].atomicNo + "<br/>" + ptoe[p++].sym + "</td>";
+            showElem(p++);
         }
 
     }
