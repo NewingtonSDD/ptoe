@@ -69,7 +69,7 @@ function hoverElem(elemId) {
     var htmlBuffer = "";
 
     htmlBuffer +=
-                ptoe[elemId].atomicNo +
+        ptoe[elemId].atomicNo +
         "<br/><h1>" +
         ptoe[elemId].sym +
         "</h1><br/><h2>" +
@@ -86,14 +86,15 @@ function drawPTOE() {
     var htmlBuffer = "";
 
     function showElem(atomicNumber) {
-        htmlBuffer += "<td class=" +
-                        ptoe[atomicNumber].family +
-                        " onmouseover=hoverElem(" + atomicNumber + ")" +
-                        ">" +
-                        ptoe[atomicNumber].atomicNo +
-                        "<br/><h2>" +
-                        ptoe[atomicNumber].sym +
-                        "</h2><br/>" +
+        htmlBuffer +=
+            "<td class=" +
+            ptoe[atomicNumber].family +
+            " onmouseover=hoverElem(" + atomicNumber + ")" +
+            ">" +
+            ptoe[atomicNumber].atomicNo +
+            "<br/><h2>" +
+            ptoe[atomicNumber].sym +
+            "</h2><br/>" +
 //                        ptoe[atomicNumber].name +
             "</td>";
     }
@@ -107,7 +108,7 @@ function drawPTOE() {
 
         showElem(p++);
 
-        if(i==0) for(k=0; k<16; k++) htmlBuffer += "<td class='invis'></td>";
+        if(i==0) htmlBuffer += "<td class='invis' colspan=16></td>";
     }
 
     for(j=0; j<2; j++) {
@@ -118,7 +119,7 @@ function drawPTOE() {
 
             showElem(p++);
 
-            if(i==1) for(k=0; k<10; k++) htmlBuffer += "<td class='invis'></td>";
+            if(i==1) htmlBuffer += "<td class='invis' colspan=10></td>";
         }
 
     }
