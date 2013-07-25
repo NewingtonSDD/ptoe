@@ -5,7 +5,12 @@
  * Time: 6:18 PM
  * To change this template use File | Settings | File Templates.
  */
+//TODO make ptoe an object and refactor functions as methods
 
+/**
+ * Periodic Table of the Elements
+ * @type {Array} ptoe data structure of objects representing the PTOE
+ */
 ptoe  = [
     { atomicNo: 1, sym: 'H', name: "Hydrogen", family: "hydrogen" },
     { atomicNo: 2, sym: 'He', name: "Helium", family: "noble" },
@@ -138,8 +143,41 @@ function drawPTOE() {
 
     setByID("ptoe", htmlBuffer);
 
+    makeList();
+
 }
 
+/**
+ * Helper function to set content for innerHTML of a DOM element by id
+ * <pre>
+ * Usage example:
+ * setByID("ptoe", htmlBuffer);
+ * </pre>
+ * @param {String} id of the DOM element
+ * @param {String} content to be injected to innerHTML
+ */
 function setByID(id, content) {
     document.getElementById(id).innerHTML = content;
+}
+
+function makeList() {
+
+    var htmlBuffer = "";
+
+    htmlBuffer += "<tr>"
+    htmlBuffer += "<th>" + "Atomic Number" + "</th>";
+    htmlBuffer += "<th>" + "Symbol" + "</th>";
+    htmlBuffer += "<th>" + "Name" + "</th>";
+    htmlBuffer += "</tr>"
+
+    for (var i = 0; i < ptoe.length; i++) {
+        htmlBuffer += "<tr>"
+        htmlBuffer += "<td>" + ptoe[i].atomicNo + "</td>";
+        htmlBuffer += "<td>" + ptoe[i].sym + "</td>";
+        htmlBuffer += "<td>" + ptoe[i].name + "</td>";
+        htmlBuffer += "</tr>"
+    }
+
+
+    setByID("list", htmlBuffer);
 }
