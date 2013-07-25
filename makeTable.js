@@ -69,9 +69,11 @@ ptoe  = [
 
 ];
 
-function hoverElem(elemId) {
+function hoverElem(symbol) {
 
     var htmlBuffer = "";
+
+    var elemId = ptoe.map(function(e) { return e.sym }).indexOf(symbol);
 
     htmlBuffer +=
         ptoe[elemId].atomicNo +
@@ -92,9 +94,9 @@ function drawPTOE() {
 
     function showElem(atomicNumber) {
         htmlBuffer +=
-            "<td class=" +
+            "<td class='elem " +
             ptoe[atomicNumber].family +
-            " onmouseover=hoverElem(" + atomicNumber + ")" +
+            "' onmouseover=hoverElem('" + ptoe[atomicNumber].sym + "')" +
             ">" +
             ptoe[atomicNumber].atomicNo +
             "<br/><h2>" +
@@ -143,7 +145,7 @@ function drawPTOE() {
 
     setByID("ptoe", htmlBuffer);
 
-    makeList();
+    makeList(0);
 
 }
 
@@ -160,24 +162,52 @@ function setByID(id, content) {
     document.getElementById(id).innerHTML = content;
 }
 
-function makeList() {
+function byAtomicNo(a,b) {
+    return a.atomicNo - b.atomicNo;
+}
+
+function bySymbol(a,b) {
+    if (a.sym == b.sym) return 0;
+    if (a.sym > b.sym) return 1;
+    return -1;
+}
+
+function byName(a,b) {
+    if (a.name == b.name) return 0;
+    if (a.name > b.name) return 1;
+    return -1;
+}
+
+function makeList(sortKey) {
+
+     switch(sortKey) {
+         case 0:
+             ptoe.sort(byAtomicNo);
+             break;
+         case 1:
+             ptoe.sort(bySymbol);
+             break;
+         case 2:
+             ptoe.sort(byName);
+             break;
+
+     }
 
     var htmlBuffer = "";
 
     htmlBuffer += "<tr>"
-    htmlBuffer += "<th>" + "Atomic Number" + "</th>";
-    htmlBuffer += "<th>" + "Symbol" + "</th>";
-    htmlBuffer += "<th>" + "Name" + "</th>";
+    htmlBuffer += "<th onclick=makeList(0)>" + "Atomic No" + "</th>";
+    htmlBuffer += "<th onclick=makeList(1)>" + "Symbol" + "</th>";
+    htmlBuffer += "<th onclick=makeList(2)>" + "Name" + "</th>";
     htmlBuffer += "</tr>"
 
     for (var i = 0; i < ptoe.length; i++) {
         htmlBuffer += "<tr>"
-        htmlBuffer += "<td>" + ptoe[i].atomicNo + "</td>";
-        htmlBuffer += "<td>" + ptoe[i].sym + "</td>";
-        htmlBuffer += "<td>" + ptoe[i].name + "</td>";
+        htmlBuffer += "<td class=list>" + ptoe[i].atomicNo + "</td>";
+        htmlBuffer += "<td class=list>" + ptoe[i].sym + "</td>";
+        htmlBuffer += "<td class=list>" + ptoe[i].name + "</td>";
         htmlBuffer += "</tr>"
     }
-
 
     setByID("list", htmlBuffer);
 }

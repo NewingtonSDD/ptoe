@@ -4,12 +4,14 @@
     <title>Periodic Table of the Elements</title>
     <script type="text/javascript" src="makeTable.js"></script>
     <style>
-        td { height: 50px; width: 5.5%; border: 0;}
+        td.elem { height: 50px; width: 5.5%; border: 0;}
         td.invis { border: 0 }
         table { border: 0; width: 100%}
         body { font-family: Helvetica }
 
         table#list { width: 400px }
+
+        td.list { text-align: center}
 
         #higlight { position: absolute; top: 10%; left: 13.5%; height: 200px; width: 200px; border: 0 }
 
@@ -29,6 +31,9 @@
     <div id="ptoe"></div>
 
     <table id="higlight"><tr><td id="higlightElem"></td></tr></table>
+
+    <br/>
+    <br/>
 
     <table id="list"></table>
 </body>
